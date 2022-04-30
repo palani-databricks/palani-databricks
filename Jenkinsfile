@@ -31,7 +31,7 @@ volumes: [
 	  
 	  stage('Build Docker Image') {
 	    container ('docker') {
-		    sh "docker build -t ${image_name}:${image_tag} ."
+		    sh "docker build --network=host -t ${image_name}:${image_tag} ."
 	    }
        }
 	  
