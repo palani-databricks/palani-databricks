@@ -38,6 +38,8 @@ volumes: [
 	  stage('Push Docker Image') {
 	    container ('docker') {
 		 withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'dockerhub_user_pass', usernameVariable: 'dockerhub_user_name')]) {
+			 sh """ docker login -u ${dockerhub_user_name} https://index.docker.io/v1/
+			        docker push ${image_name}:${image_tag} """
             }
        }
 	  }
