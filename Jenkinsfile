@@ -37,9 +37,10 @@ volumes: [
 	  
 	  stage('Push Docker Image') {
 	    container ('docker') {
-		    sh "docker build -t ${image_name}:${image_tag} ."
-	    }
+		 withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'dockerhub_user_pass', usernameVariable: 'dockerhub_user_name')]) {
+            }
        }
+	  }
 	  
 	  
   }
