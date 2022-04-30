@@ -25,10 +25,15 @@ volumes: [
 	  
 	  stage('NPM Install') {
 	    container ('nodejs') {
-	         
-                 sh 'npm install'
-		   
+	         sh 'npm install'   
 	    }
        }
+	  
+	  stage('Build Docker Image') {
+	    container ('docker') {
+		    sh 'docker build -t ${image_name}:${image_tag} .'   
+	    }
+       }
+	  
   }
 }
