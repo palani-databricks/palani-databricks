@@ -22,5 +22,13 @@ volumes: [
       commitId= scmInfo.GIT_COMMIT[0..7]
 	  image_tag = "${scmInfo.GIT_BRANCH}-${scmInfo.GIT_COMMIT[0..7]}"
 	  image_name = "frontend-app"
+	  
+	  stage('NPM Install') {
+	    container ('nodejs') {
+	         
+                 sh 'npm install'
+		   
+	    }
+       }
   }
 }
