@@ -20,8 +20,8 @@ volumes: [
       def gitBranch = scmInfo.GIT_BRANCH
       def commitId
       commitId= scmInfo.GIT_COMMIT[0..7]
-	  image_tag = "lates"
-	  image_name = "frontend-app"
+	  image_tag = "latest"
+	  image_name = "node-app"
 	  
 	  stage('NPM Install') {
 	    container ('nodejs') {
@@ -31,7 +31,7 @@ volumes: [
 	  
 	  stage('Build Docker Image') {
 	    container ('docker') {
-		    sh 'docker build -t ${image_name}:${image_tag} .'   
+		    sh "docker build -t ${image_name}:${image_tag} ."
 	    }
        }
 	  
