@@ -35,5 +35,12 @@ volumes: [
 	    }
        }
 	  
+	  stage('Push Docker Image') {
+	    container ('docker') {
+		    sh "docker build -t ${image_name}:${image_tag} ."
+	    }
+       }
+	  
+	  
   }
 }
