@@ -31,7 +31,7 @@ volumes: [
 	  
 	  stage('Build Docker Image') {
 	    container ('docker') {
-		    sh "docker build -t palanidatabricks/app_node:latest ."
+		    sh "docker build  --network=host -t palanidatabricks/app_node:latest ."
 	    }
        }
 	  
