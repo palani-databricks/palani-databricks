@@ -1,10 +1,15 @@
-var element = document.getElementById("subtitle");
+var express = require('express');
+var app = express();
 
-var htmlText = element.innerHTML; 
+app.get('/', function (req, res) {
+    res.send('{ "response": "Welcome to Databricks Demo" }');
+});
 
-var i = htmlText.indexOf("(");
-var j = htmlText.indexOf(")")+1;
-
-var redText = htmlText.substring(i, j);
-
-element.innerHTML = htmlText.substring(0,i)+"<a style='color:red;'>"+redText+"</a>"+htmlText.substring(j);
+app.get('/will', function (req, res) {
+    res.send('{ "response": "Hello World" }');
+});
+app.get('/ready', function (req, res) {
+    res.send('{ "response": " Great!, It works!" }');
+});
+app.listen(process.env.PORT || 3000);
+module.exports = app;
