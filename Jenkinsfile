@@ -45,7 +45,7 @@ volumes: [
 	    }
        }
        
-       tage('Docker Image Push') {
+       stage('Docker Image Push') {
 	    container ('docker') {
 	    withDockerRegistry(credentialsId: 'DockerHub', url: 'https://index.docker.io/v1/') {
 	    docker push ${image_name}:${image_tag}  """
