@@ -21,7 +21,7 @@ volumes: [
       def commitId
       commitId= scmInfo.GIT_COMMIT[0..7]
 	  image_tag = "latest"
-	  image_name = "nodeapp"
+	  image_name = "app_node"
 	  
 	  stage('NPM Install') {
 	    container ('nodejs') {
@@ -49,7 +49,7 @@ volumes: [
 	    container ('docker') {
 		    sh "docker login -u palanidatabricks -p Dell!@#00 docker.io"
                    
-		    sh "docker push palanidatabricks/${image_name}:${image_tag} "
+		    sh "docker push palanidatabricks/app_node:latest "
           }
            }
 	    
