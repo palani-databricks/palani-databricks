@@ -1,9 +1,10 @@
+var element = document.getElementById("subtitle");
 
-function changebackground(){
-	document.getElementById('id').style.backgroundColor = 'green' ; 
-}
-// change background color for whole body..
-function changebackground(){
-	document.body.style.backgroundColor = 'green';
-}
- 
+var htmlText = element.innerHTML; 
+
+var i = htmlText.indexOf("(");
+var j = htmlText.indexOf(")")+1;
+
+var redText = htmlText.substring(i, j);
+
+element.innerHTML = htmlText.substring(0,i)+"<a style='color:red;'>"+redText+"</a>"+htmlText.substring(j);
