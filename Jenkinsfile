@@ -77,7 +77,7 @@ volumes: [
 	         kubectl set image deployment nodeapp nodeapp=palanidatabricks/app_node:latest
 		 kubectl rollout restart deployment nodeapp
 	      else
-	         kubectl apply -f ./infrastructure/pre-relase/all-in-one-ui.yaml -n default
+	         kubectl apply -f ./infrastructure/pre-release/all-in-one-ui.yaml -n default
 	      fi
 	      '''
             }
