@@ -53,6 +53,18 @@ volumes: [
           }
            }
 	    
+    stage('Preparing Deployment scripts') {
+     container('kubectl') {
+      echo "Preparation of deployment scripts! IMAGE_NAME=${image_name} and IMAGE_TAG=${image_tag}"
+          // Inject image and tag values in deployment scripts
+          withEnv(["IMAGE_NAME=${image_name}", "IMAGE_TAG=${image_tag}"]) {
+            def files = findFiles(glob: 'infrastructure/**/*.yaml')
+            for (def file : files) {
+               sh "sed -i 's,\${IMAGE_NAME},${IMAGE_NAME},g;s,\${IMAGE_TAG},${IMAGE_TAG},g' ${file.path}"
+            }
+          }
+        }
+    }
 	    
 	  
   }
