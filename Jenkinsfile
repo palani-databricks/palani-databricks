@@ -39,7 +39,7 @@ volumes: [
 	   stage('Docker Login') {
 	    container ('docker') {
 		    withCredentials([string(credentialsId: 'dockerhub_user_pass', variable: 'dockerhub_user_pass')]) {
-			    sh """ docker login -u palanidatabricks -p ${dockerhub_user_pass}
+			    sh "docker login -u palanidatabricks -p ${dockerhub_user_pass}"
          }
 		    
 	    }
@@ -48,7 +48,7 @@ volumes: [
        stage('Docker Image Push') {
 	    container ('docker') {
 	    withDockerRegistry(credentialsId: 'DockerHub', url: 'https://index.docker.io/v1/') {
-	    docker push ${image_name}:${image_tag}  """
+	    docker push "${image_name}:${image_tag}"
            }
         
 		    }
