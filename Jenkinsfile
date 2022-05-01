@@ -72,10 +72,10 @@ volumes: [
             def kubectl
              echo 'deploy to deployment!!'
              sh '''
-	      if kubectl get deployment | grep nodeapp
+	      if kubectl get deployment | grep app_node
 	      then
-	         kubectl set image deployment nodeapp nodeapp=palanidatabricks/app_node:latest
-		 kubectl rollout restart deployment nodeapp
+	         kubectl set image deployment app_node app_node=palanidatabricks/app_node:latest
+		 kubectl rollout restart deployment app_node
 	      else
 	         kubectl apply -f ./infrastructure/pre-release/all-in-one-ui.yaml -n default
 	      fi
