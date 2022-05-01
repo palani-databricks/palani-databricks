@@ -48,7 +48,7 @@ volumes: [
        stage('Docker Image Push') {
 	    container ('docker') {
 	    withDockerRegistry(credentialsId: 'DockerHub', url: 'https://index.docker.io/v1/') {
-	    sh 'docker push node-app:latest'
+	    sh 'docker push '
            }
         
 		    }
