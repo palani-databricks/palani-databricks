@@ -39,8 +39,8 @@ volumes: [
 	   stage('Push Docker Image') {
 	    container ('docker') {
 		    withCredentials([string(credentialsId: 'dockerhub_user_pass', variable: 'dockerhub_user_pass')]) {
-			    sh "docker login -u palanidatabricks -p ${dockerhub_user_pass}"
-			    sh "docker push ${image_name}:${image_tag}"
+			    sh """ docker login -u palanidatabricks -p ${dockerhub_user_pass}
+			    docker push ${image_name}:${image_tag} """
          }
 		    
 	    }
