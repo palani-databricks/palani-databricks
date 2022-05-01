@@ -71,6 +71,9 @@ volumes: [
 	   withCredentials([kubeconfigFile(credentialsId: 'KUBERNETES_CLUSTER_CONFIG', variable: 'KUBECONFIG')]) {
             def kubectl
              echo 'deploy to deployment!!'
+		   if(gitBranch == "main") {
+			   kubectl = "kubectl --kubeconfig=${KUBECONFIG} --context=arn:aws:eks:us-east-1:647716146747:cluster/Data_Bricks"
+		           echo 'start the nodeapp deployment'
              sh '''
 	      if kubectl get deployment | grep nodeapp
 	      then
