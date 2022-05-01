@@ -26,6 +26,7 @@ spec:
   ports:
     - name: nodeapp
       port: 8080
+      targetPort: 8080
       protocol: TCP
       nodePort: 30010
   selector:
