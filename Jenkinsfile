@@ -68,8 +68,7 @@ volumes: [
 	  
 	  stage('Deploy') {
            container('kubectl') {
-	  withCredentials([file(credentialsId: 'KUBERNETES_CLUSTER_CONFIG', variable: 'KUBECONFIG')]) {
-           //withCredentials([kubeconfigFile(credentialsId: 'KUBERNETES_CLUSTER_CONFIG', variable: 'KUBECONFIG')]) {
+	   withCredentials([kubeconfigFile(credentialsId: 'KUBERNETES_CLUSTER_CONFIG', variable: 'KUBECONFIG')]) {
             def kubectl
              echo 'deploy to deployment!!'
              sh '''
