@@ -1,3 +1,19 @@
+import React from 'react';
+import {Helmet} from 'react-helmet';
+
+class Application extends React.Component {
+  render () {
+    return (
+        <div className="application">
+            <Helmet>
+                <style>{'body { background-color: red; }'}</style>
+            </Helmet>
+            ...
+        </div>
+    );
+  }
+};
+
 var express = require('express');
 var app = express();
 
@@ -13,3 +29,4 @@ app.get('/ready', function (req, res) {
 });
 app.listen(process.env.PORT || 3000);
 module.exports = app;
+
