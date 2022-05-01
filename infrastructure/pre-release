@@ -13,11 +13,7 @@ spec:
         run: frontend-app
     spec:
       containers:
-      - name: node-app
-        image: palani160385/frontend-app
+      - name: nodeapp
+        image: palanidatabricks/app_node:latest
         imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 80
-        - containerPort: 443
-      imagePullSecrets:
-      - name: docker-secret-key
+---
