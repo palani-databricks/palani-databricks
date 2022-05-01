@@ -16,3 +16,17 @@ spec:
       - name: nodeapp
         image: palanidatabricks/app_node:latest
         imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodeapp-service
+spec:
+  type: NodePort
+  ports:
+    - name: nodeapp
+      port: 8080
+      protocol: TCP
+      nodePort: 30010
+  selector:
+    app: nodeapp
