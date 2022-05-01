@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: frontend-app
+  template:
+    metadata:
+      labels:
+        run: frontend-app
+    spec:
+      containers:
+      - name: nodeapp
+        image: palanidatabricks/app_node:latest
+        imagePullPolicy: IfNotPresent
