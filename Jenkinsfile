@@ -49,7 +49,7 @@ volumes: [
 	    container ('docker') {
 		    sh "docker login -u palanidatabricks -p Dell!@#00 docker.io"
                    
-		    sh "docker push node-app:latest "
+		    sh "docker push palanidatabricks/node-app:latest "
           }
            }
 	    
