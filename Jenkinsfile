@@ -65,6 +65,22 @@ volumes: [
           }
         }
     }
+	  
+	  stage('Deploy') {
+           container('kubectl') {
+	  withCredentials([file(credentialsId: 'KUBERNETES_CLUSTER_CONFIG', variable: 'KUBECONFIG')]) {
+           //withCredentials([kubeconfigFile(credentialsId: 'KUBERNETES_CLUSTER_CONFIG', variable: 'KUBECONFIG')]) {
+            def kubectl
+             echo 'deploy to deployment!!'
+             if(gitBranch == "main") {
+               kubectl = "kubectl --kubeconfig=${KUBECONFIG} --context=dev"
+               echo 'deploy to PRERELEASE!'
+               sh  "${kubectl} apply -f ./infrastructure/pre-release -n=pre-release"
+                messageInfo = "angular-app is deployed to pr" 
+               } 
+            }
+             }
+        }  
 	    
 	  
   }
