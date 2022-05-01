@@ -9,7 +9,7 @@ podTemplate(label: label, containers: [
 ],
 volumes: [
    hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
-  hostPathVolume(hostPath: '/root/.m2/repository', mountPath: '/root/.m2/repository')
+  
 ]) {
   node(label) {
     def scmInfo = checkout scm
