@@ -1,13 +1,17 @@
 {
-    "name": "docker_web_app",
-    "version": "1.0.0",
-    "description": "Node.js on Docker",
-    "author": "First Last <first.last@example.com>",
-    "main": "server.js",
-    "scripts": {
-      "start": "node server.js"
-    },
-    "dependencies": {
-      "express": "^4.16.1"
-    }
+  "name": "node-app",
+  "description": "Nodeapp for CICD test",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "4.17.1"
+  },
+  "devDependencies": {
+    "mocha": "9.1.1",
+    "supertest": "6.1.6"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "./node_modules/.bin/mocha ./test/test.js"
   }
+}
