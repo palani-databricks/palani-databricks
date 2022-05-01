@@ -31,7 +31,7 @@ volumes: [
 	  
 	  stage('Build Docker Image') {
 	    container ('docker') {
-		    sh "docker build -t app_node:latest ."
+		    sh "docker build -t palanidatabricks/app_node:latest ."
 	    }
        }
 	  
