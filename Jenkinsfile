@@ -50,6 +50,7 @@ volumes: [
         docker push https://index.docker.io/v1/${image_name}:${image_tag}  """
 		    }
 	    }
+	    }
 	  
   }
 }
