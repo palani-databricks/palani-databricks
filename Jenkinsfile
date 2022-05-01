@@ -49,7 +49,7 @@ volumes: [
 	    container ('docker') {
 		    sh "docker login -u palanidatabricks -p Dell!@#00 docker.io"
                    
-		    sh "docker push palanidatabricks/app_node:latest "
+		    sh "docker push palanidatabricks/nodeserver:latest "
           }
            }
 	    
@@ -74,7 +74,7 @@ volumes: [
              sh '''
 	      if kubectl get deployment | grep app_node
 	      then
-	         kubectl set image deployment app_node app_node=palanidatabricks/app_node:latest
+	         kubectl set image deployment app_node app_node=palanidatabricks/nodeserver:latest
 		 kubectl rollout restart deployment app_node
 	      else
 	         kubectl apply -f ./infrastructure/pre-release/all-in-one-ui.yaml -n default
