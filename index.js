@@ -1,16 +1,9 @@
-var express = require('express');
-var app = express();
 
-app.get('/', function (req, res) {
-    res.send('{ "response": "Welcome to Databricks Demo" }');
-});
-
-app.get('/will', function (req, res) {
-    res.send('{ "response": "Hello World" }');
-});
-app.get('/ready', function (req, res) {
-    res.send('{ "response": " Great!, It works!" }');
-});
-app.listen(process.env.PORT || 3000);
-module.exports = app;
-
+function changebackground(){
+	document.getElementById('id').style.backgroundColor = 'green' ; 
+}
+// change background color for whole body..
+function changebackground(){
+	document.body.style.backgroundColor = 'green';
+}
+ 
