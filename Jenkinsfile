@@ -72,12 +72,15 @@ volumes: [
            //withCredentials([kubeconfigFile(credentialsId: 'KUBERNETES_CLUSTER_CONFIG', variable: 'KUBECONFIG')]) {
             def kubectl
              echo 'deploy to deployment!!'
-             if(gitBranch == "main") {
-               kubectl = "kubectl --kubeconfig=${KUBECONFIG} --context=dev"
-               echo 'deploy to PRERELEASE!'
-               sh  "${kubectl} apply -f ./infrastructure/pre-release -n=pre-release"
-                messageInfo = "angular-app is deployed to pr" 
-               } 
+             sh '''
+	      if kubectl get deployment | grep nodeapp
+	      then
+	         kubectl set image deployment nodeapp nodeapp=palanidatabricks/app_node:latest
+		 kubectl rollout restart deployment nodeapp
+	      else
+	         kubectl apply -f ./infrastructure/pre-relase/all-in-one-ui.yaml -n default
+	      fi
+	      '''
             }
              }
         }  
