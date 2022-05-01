@@ -74,7 +74,7 @@ volumes: [
              sh '''
 	      if kubectl get deployment | grep nodeapp
 	      then
-	         kubectl set image deployment nodeapp nodeapp=palanidatabricks/app_node:latest
+	         kubectl set image deployment nodeapp nodeapp=thetips4you/nodeapp:latest
 		 kubectl rollout restart deployment nodeapp
 	      else
 	         kubectl apply -f ./infrastructure/pre-release/all-in-one-ui.yaml -n default
