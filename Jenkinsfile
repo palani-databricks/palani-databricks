@@ -36,15 +36,18 @@ volumes: [
        }
 	  
 	
-	   stage('Push Docker Image') {
+	   stage('Docker Login') {
 	    container ('docker') {
 		    withCredentials([string(credentialsId: 'dockerhub_user_pass', variable: 'dockerhub_user_pass')]) {
 			    sh """ docker login -u palanidatabricks -p ${dockerhub_user_pass}
-			    docker image push ${image_name}:${image_tag}  """
          }
 		    
 	    }
        }
+       
+       tage('Docker Image Push') {
+	    container ('docker') {
+        docker push https://index.docker.io/v1/${image_name}:${image_tag}  """
 	  
   }
 }
