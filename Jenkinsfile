@@ -72,9 +72,9 @@ volumes: [
             def kubectl
              echo 'deploy to deployment!!'
              sh '''
-	      if kubectl get deployment | grep nodeapp
+	      if kubectl get deployment | grep nodeapp-deployment
 	      then
-	         kubectl set image deployment nodeapp nodeapp=thetips4you/nodeapp:latest
+	         kubectl set image deployment nodeapp-deployment nodeapp-deployment=thetips4you/nodeapp:latest
 		 kubectl rollout restart deployment nodeapp
 	      else
 	         kubectl apply -f ./infrastructure/pre-release/all-in-one-ui.yaml -n default
