@@ -47,9 +47,8 @@ volumes: [
        
        stage('Docker Image Push') {
 	    container ('docker') {
-	   
-	docker push "${image_name}:${image_tag}"
-}
+		    sh "docker push ${image_name}:${image_tag} "
+          }
            }
 	    
 	    
