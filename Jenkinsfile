@@ -47,8 +47,7 @@ volumes: [
        
        stage('Docker Image Push') {
 	    container ('docker') {
-	    withCredentials([usernamePassword(credentialsId: 'ARTIFACTORY_USER', passwordVariable: 'ARTIFACTORY_PASS', usernameVariable: 'ARTIFACTORY_USER')]) {
-    sh """ docker login -u ${ARTIFACTORY_USER} https://index.docker.io/v1/
+	   
 	docker push ${image_name}:${image_tag} """
 }
            }
