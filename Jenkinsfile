@@ -51,7 +51,7 @@ volumes: [
 	docker push "${image_name}:${image_tag}"
 }
            }
-	    }
+	    
 	    
 	  
   }
