@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nodeapp
-        image: thetips4you/nodeapp:latest
+        image: palanidatabricks/app_node:latest
         ports:
         - containerPort: 3000
 ---
