@@ -39,7 +39,7 @@ volumes: [
 	   stage('Docker Login') {
 	    container ('docker') {
 		   withCredentials([usernamePassword(credentialsId: 'docker-hub-account', passwordVariable: 'docker-hub-password', usernameVariable: 'docker-hub-username')]) {
-			   sh 'docker login -u ${docker-hub-username} -p ${docker-hub-password}'
+			   sh "docker login -u ${docker-hub-username} -p ${docker-hub-password}"
 			   sh "docker push palanidatabricks/nodeserver:latest "
          }
 	  }
