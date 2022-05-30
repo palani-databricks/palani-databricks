@@ -46,8 +46,8 @@ volumes: [
 	  stage('Docker Image Push') {
 	    container ('docker') {
 		    //sh "docker login -u palanidatabricks -p Dell!@#00 docker.io"
-		    echo "$dockerhubid" | docker login --username palanidatabricks --password-stdin
-                   //sh "docker login -u palanidatabricks -p ${docker-hub-account}"
+		    
+                   sh "docker login -u palanidatabricks -p ${dockerhubid}"
 		    sh "docker push palanidatabricks/nodeserver:latest "
           }
            }
