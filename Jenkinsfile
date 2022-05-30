@@ -39,8 +39,9 @@ volumes: [
 	   stage('Docker Login') {
 	    container ('docker') {
 		   // withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-			    withCredentials([string(credentialsId: 'dockerhub_user_pass', variable: 'dockerhub_user_pass')]) {
-			     sh 'docker login -u palanidatabricks -p ${dockerhubpwd}'
+			    //withCredentials([string(credentialsId: 'dockerhub_user_pass', variable: 'dockerhub_user_pass')]) 
+		    withCredentials([string(credentialsId: 'dockerhub_user_pass', variable: 'docker-account')]) {
+			     sh 'docker login -u palanidatabricks -p ${docker-account}'
 		    
          }
 		    
