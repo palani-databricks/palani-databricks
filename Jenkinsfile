@@ -51,5 +51,40 @@ volumes: [
           }
            }
 	
+	  stage('Preparing Deployment scripts') {
+     container('kubectl') {
+      echo "Preparation of deployment scripts! IMAGE_NAME=${image_name} and IMAGE_TAG=${image_tag}"
+          // Inject image and tag values in deployment scripts
+          withEnv(["IMAGE_NAME=${image_name}", "IMAGE_TAG=${image_tag}"]) {
+            def files = findFiles(glob: 'infrastructure/**/*.yaml')
+            for (def file : files) {
+               sh "sed -i 's,\${IMAGE_NAME},${IMAGE_NAME},g;s,\${IMAGE_TAG},${IMAGE_TAG},g' ${file.path}"
+            }
+          }
+        }
+    }
+	  
+	  stage('Deploy') {
+           container('kubectl') {
+	   withCredentials([kubeconfigFile(credentialsId: 'KUBERNETES_CLUSTER_CONFIG', variable: 'KUBECONFIG')]) {
+            def kubectl
+             echo 'deploy to deployment!!'
+		   if(gitBranch == "main") {
+			   kubectl = "kubectl --kubeconfig=${KUBECONFIG} --context=arn:aws:eks:us-east-1:647716146747:cluster/Data_Bricks"
+		           echo 'start the nodeapp deployment'
+             sh '''
+	      if kubectl get deployment | grep nodeapp
+	      then
+	         kubectl set image deployment nodeapp nodeapp=palanidatabricks/nodeserver:latest
+		 kubectl rollout restart deployment nodeapp
+	      else
+	         kubectl apply -f ./infrastructure/pre-release/all-in-one-ui.yaml -n default
+	      fi
+	      '''
+            }
+             }
+        }  
+	    
+	  }
   }
 }
