@@ -1,4 +1,4 @@
-//def label = "worker-2${UUID.randomUUID().toString()}"
+def label = "kubepods${UUID.randomUUID().toString()}"
 
 podTemplate(label: label, containers: [
         containerTemplate(name: 'nodejs', image: 'node:13.3.0', ttyEnabled: true, command: 'cat'),
