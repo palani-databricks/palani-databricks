@@ -45,10 +45,8 @@ volumes: [
 	  
 	  stage('Docker Image Push') {
 	    container ('docker') {
-		    sh '''
-		     docker login -u palanidatabricks -p Dell!@#00 docker.io"
-		     docker push palanidatabricks/nodeserver:latest "
-		     '''
+		     sh "docker login -u palanidatabricks -p Dell!@#00 docker.io"
+		     sh "docker push palanidatabricks/nodeserver:latest "
           }
            }
 	
