@@ -47,7 +47,7 @@ volumes: [
 	    container ('docker') {
 		    //sh "docker login -u palanidatabricks -p Dell!@#00 docker.io"
 		    
-                   sh 'docker login -u palanidatabricks -p "${dockerhubcredentials}"'
+                   sh 'docker login -u palanidatabricks -p "${dockerhubcredentials}" docker.io'
 		    //sh "docker push palanidatabricks/nodeserver:latest "
           }
            }
