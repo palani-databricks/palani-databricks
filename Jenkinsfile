@@ -20,6 +20,7 @@ volumes: [
       def gitBranch = scmInfo.GIT_BRANCH
       def commitId
       commitId= scmInfo.GIT_COMMIT[0..7]
+	  DOCKERHUB_CREDENTIALS= credentials('dockerhubid') 
 	  image_tag = "latest"
 	  image_name = "app_node"
 	  
@@ -38,8 +39,9 @@ volumes: [
 	
 	stage('Docker Login') {
 	    container ('docker') {
-		    withCredentials([usernameColonPassword(credentialsId: 'dockerhubid', variable: 'dockerhubid')]) {
-         }		    
+		    //withCredentials([usernameColonPassword(credentialsId: 'dockerhubid', variable: 'dockerhubid')]) {
+		    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+         //}		    
 	    }
        }
 	  
