@@ -1,4 +1,4 @@
-def label = "worker-2${UUID.randomUUID().toString()}"
+//def label = "worker-2${UUID.randomUUID().toString()}"
 
 podTemplate(label: label, containers: [
         containerTemplate(name: 'nodejs', image: 'node:13.3.0', ttyEnabled: true, command: 'cat'),
@@ -38,7 +38,8 @@ volumes: [
 	
 	   stage('Docker Login') {
 	    container ('docker') {
-		    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+		   // withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+			    withCredentials([string(credentialsId: 'dockerhub_user_pass', variable: 'dockerhub_user_pass')]) {
 			     sh 'docker login -u palanidatabricks -p ${dockerhubpwd}'
 		    
          }
