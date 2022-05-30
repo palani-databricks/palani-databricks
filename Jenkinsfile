@@ -20,7 +20,7 @@ volumes: [
       def gitBranch = scmInfo.GIT_BRANCH
       def commitId
       commitId= scmInfo.GIT_COMMIT[0..7]
-	  DOCKERHUB_CREDENTIALS= credentials('dockerhubid') 
+	  DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials') 
 	  image_tag = "latest"
 	  image_name = "app_node"
 	  
