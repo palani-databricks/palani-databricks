@@ -20,9 +20,8 @@ volumes: [
       def gitBranch = scmInfo.GIT_BRANCH
       def commitId
       commitId= scmInfo.GIT_COMMIT[0..7]
-	  DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials') 
-	  image_tag = "latest"
-	  image_name = "app_node"
+      image_tag = "latest"
+      image_name = "app_node"
 	  
 	  stage('NPM Install') {
 	    container ('nodejs') {
@@ -39,9 +38,8 @@ volumes: [
 	
 	stage('Docker Login') {
 	    container ('docker') {
-		    //withCredentials([usernameColonPassword(credentialsId: 'dockerhubid', variable: 'dockerhubid')]) {
-		    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-         //}		    
+		    withCredentials([usernameColonPassword(credentialsId: 'dockerhubcredentials', variable: 'dockerhubcredentials')]) {   
+         }		    
 	    }
        }
 	  
@@ -49,8 +47,8 @@ volumes: [
 	    container ('docker') {
 		    //sh "docker login -u palanidatabricks -p Dell!@#00 docker.io"
 		    
-                   sh "docker login -u palanidatabricks -p ${dockerhubid}"
-		    sh "docker push palanidatabricks/nodeserver:latest "
+                   sh "docker login -u palanidatabricks -p ${dockerhubcredentials}"
+		    //sh "docker push palanidatabricks/nodeserver:latest "
           }
            }
 	
