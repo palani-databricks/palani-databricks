@@ -38,14 +38,15 @@ volumes: [
 	
 	stage('Docker Login') {
 	    container ('docker') {
-		    withCredentials([usernameColonPassword(credentialsId: 'dockerhubcredentials', variable: 'dockerhubcredentials')]) {   
+		    withCredentials([usernameColonPassword(credentialsId: 'dockerhubcredentials', variable: 'dockerhubcredentials')]) {
+	             sh "docker login -u palanidatabricks -p Dell!@#00 docker.io"
          }		    
 	    }
        }
 	  
 	  stage('Docker Image Push') {
 	    container ('docker') {
-		     sh "docker login -u palanidatabricks -p Dell!@#00 docker.io"
+		    
 		     sh "docker push palanidatabricks/nodeserver:latest "
           }
            }
