@@ -48,7 +48,7 @@ volumes: [
 		    //sh "docker login -u palanidatabricks -p Dell!@#00 docker.io"
 		    
                    //sh 'docker login -u palanidatabricks -p "${dockerhubcredentials}" docker.io'
-		    echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+		    echo $dockerhubcredentials | docker login -u $dockerhubcredentials --password-stdin
 		    //sh "docker push palanidatabricks/nodeserver:latest "
           }
            }
